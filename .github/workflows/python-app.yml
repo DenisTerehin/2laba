@@ -37,11 +37,15 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: |
         coveralls
+    - name: Install SonarScanner
+      run: |
+        sudo apt-get install -y openjdk-11-jre-headless
+        wget https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-4.6.2.2472-linux.zip
+        unzip sonar-scanner-cli-4.6.2.2472-linux.zip
+        export PATH="$PATH:$PWD/sonar-scanner-cli-4.6.2.2472-linux/bin"
     - name: SonarCloud Scan
       run: |
-        echo "sonar-scanner -Dsonar.analysis.mode=preview" > sonar.sh
-        chmod +x sonar.sh
-        ./sonar.sh
+        sonar-scanner -Dsonar.analysis.mode=preview
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
