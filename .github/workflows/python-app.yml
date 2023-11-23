@@ -42,7 +42,8 @@ jobs:
         sudo apt-get install -y openjdk-11-jre-headless
         wget https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-4.6.2.2472-linux.zip
         unzip sonar-scanner-cli-4.6.2.2472-linux.zip
-        export PATH="$PATH:$PWD/sonar-scanner-cli-4.6.2.2472-linux/bin"
+        mv sonar-scanner-cli-4.6.2.2472-linux sonar-scanner
+        export PATH="$PATH:$PWD/sonar-scanner/bin"
     - name: SonarCloud Scan
       run: |
         sonar-scanner -Dsonar.analysis.mode=preview
