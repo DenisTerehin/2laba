@@ -42,4 +42,11 @@ jobs:
       with:
         github-token: ${{ secrets.GITHUB_TOKEN }}
         sonar-token: ${{ secrets.SONAR_TOKEN }}
-        extra-flags: '-Dsonar.analysis.mode=preview'
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+      entrypoint: sh
+      args:
+        - -c
+        - |
+          sonar-scanner -Dsonar.analysis.mode=preview
