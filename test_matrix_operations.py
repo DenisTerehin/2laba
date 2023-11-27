@@ -38,6 +38,20 @@ class TestMatrixOperations(unittest.TestCase):
         result = MatrixOperations.determinant(matrix)
         self.assertEqual(result, -2)
 
+    def test_inverse(self):
+        # Create a matrix
+        matrix = Matrix(2, 2)
+        matrix.matrix = [[4, 7], [2, 6]]
+
+        # Calculate the inverse using the inverse method
+        result_inverse = MatrixOperations.inverse(matrix)
+
+        # Expected result for the given matrix
+        expected_result = [[0.6, -0.7], [-0.2, 0.4]]
+
+        # Check if the result matches the expected inverse matrix
+        self.assertEqual(result_inverse.matrix, expected_result)
+
 # Интеграционные тесты
 class TestIntegrationMatrixOperations(unittest.TestCase):
     def test_multiply_matrices_and_scalar_multiply(self):

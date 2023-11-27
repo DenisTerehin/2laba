@@ -65,7 +65,7 @@ class MatrixOperations:
         rounded_determinant = round(determinant_value, 2)
 
         return rounded_determinant
-        
+
     @staticmethod
     def inverse(matrix):
         determinant_value = MatrixOperations.determinant(matrix)
@@ -76,8 +76,11 @@ class MatrixOperations:
         numpy_matrix = np.array(matrix.matrix)
         inverse_matrix = np.linalg.inv(numpy_matrix)
 
+        rounded_inverse_matrix = np.round(inverse_matrix, decimals=2)
+
         # Преобразуем результат обратно в объект Matrix
         result_matrix = Matrix(matrix.rows, matrix.cols)
-        result_matrix.matrix = inverse_matrix.tolist()
+        result_matrix.matrix = rounded_inverse_matrix.tolist()
+
 
         return result_matrix
