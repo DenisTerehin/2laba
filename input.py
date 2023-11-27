@@ -27,6 +27,9 @@ def get_matrix_from_input():
 
     return matrix
 
+def display(self):
+        for row in self.matrix:
+            print(row)
 
 def main():
     while True:

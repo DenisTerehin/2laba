@@ -6,9 +6,9 @@ class Matrix:
         self.cols = cols
         self.matrix = [[0] * cols for _ in range(rows)]
 
-    def display(self):
-        for row in self.matrix:
-            print(row)
+    def sum_of_elements(self):
+        total_sum = sum(sum(row) for row in self.matrix)
+        return total_sum
 
     def _check_dimensions(self, other, operation):
         if operation == "сложение матриц" and (self.rows != other.rows or self.cols != other.cols):

@@ -3,6 +3,12 @@ import unittest
 from matrix import Matrix, MatrixOperations
 
 class TestMatrixOperations(unittest.TestCase):
+    def test_sum_of_elements(self):
+        matrix = Matrix(2, 2)
+        matrix.matrix = [[1, 2], [3, 4]]
+        result = matrix.sum_of_elements()
+        self.assertEqual(result, 10, "Sum of elements calculation is incorrect")
+
     def test_add_matrices(self):
         matrix1 = Matrix(2, 2)
         matrix1.matrix = [[1, 2], [3, 4]]
