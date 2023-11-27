@@ -14,13 +14,6 @@ class Matrix:
         if operation == "сложение матриц" and (self.rows != other.rows or self.cols != other.cols):
             raise ValueError(f"Невозможно выполнить {operation}. Размеры матриц не совпадают.")
 
-    def _validate_element(self, element):
-        if not isinstance(element, (int, float)):
-            raise ValueError("Элемент матрицы должен быть числом (int или float).")
-
-    def set_element(self, i, j, value):
-        self._validate_element(value)
-        self.matrix[i][j] = value
 
 class MatrixOperations:
     @staticmethod
@@ -52,7 +45,7 @@ class MatrixOperations:
         return result
 
     @staticmethod
-    def transpose_matrix(matrix):
+    def transpose(matrix):
         result = Matrix(matrix.cols, matrix.rows)
         for i in range(matrix.rows):
             for j in range(matrix.cols):
@@ -62,16 +55,29 @@ class MatrixOperations:
     @staticmethod
     def determinant(matrix):
         if matrix.rows != matrix.cols:
-            raise ValueError("Определитель определен только для квадратных матриц")
-        return np.linalg.det(matrix.matrix)
+            raise ValueError("Матрица должна быть квадратной для вычисления определителя.")
 
+        # Преобразуем матрицу в массив NumPy и используем np.linalg.det
+        numpy_matrix = np.array(matrix.matrix)
+        determinant_value = np.linalg.det(numpy_matrix)
+
+        # Округляем значение до двух знаков после запятой
+        rounded_determinant = round(determinant_value, 2)
+
+        return rounded_determinant
+        
     @staticmethod
-    def inverse_matrix(matrix):
-        if matrix.rows != matrix.cols:
-            raise ValueError("Обратная матрица определена только для квадратных матриц")
-        if np.linalg.det(matrix.matrix) == 0:
-            raise ValueError("Обратная матрица не существует, так как определитель равен нулю")
+    def inverse(matrix):
+        determinant_value = MatrixOperations.determinant(matrix)
+        if determinant_value == 0:
+            raise ValueError("Матрица вырожденная, обратной матрицы не существует.")
 
-        inv_matrix = Matrix(matrix.rows, matrix.cols)
-        inv_matrix.matrix = np.linalg.inv(matrix.matrix).tolist()
-        return inv_matrix
+        # Преобразуем матрицу в массив NumPy и используем np.linalg.inv
+        numpy_matrix = np.array(matrix.matrix)
+        inverse_matrix = np.linalg.inv(numpy_matrix)
+
+        # Преобразуем результат обратно в объект Matrix
+        result_matrix = Matrix(matrix.rows, matrix.cols)
+        result_matrix.matrix = inverse_matrix.tolist()
+
+        return result_matrix
