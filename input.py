@@ -1,26 +1,32 @@
 from matrix import Matrix, MatrixOperations
 
 def get_matrix_from_input():
-    try:
-        rows = int(input("Введите количество строк матрицы: "))
-        cols = int(input("Введите количество столбцов матрицы: "))
-    except ValueError as e:
-        print(f"Ошибка ввода: {e}")
-        return None
+    while True:
+        try:
+            rows = int(input("Введите количество строк матрицы: "))
+            cols = int(input("Введите количество столбцов матрицы: "))
+            if rows <= 0 or cols <= 0:
+                raise ValueError("Количество строк и столбцов должно быть натуральным числом.")
+            break  # Если ввод корректен, выходим из цикла
+        except ValueError as e:
+            print(f"Ошибка ввода: {e}")
 
     matrix = Matrix(rows, cols)
 
     print("Введите элементы матрицы:")
     for i in range(rows):
         for j in range(cols):
-            try:
-                value = float(input(f"Элемент [{i}][{j}]: "))
-            except ValueError as e:
-                print(f"Ошибка ввода: {e}")
-                return None
+            while True:
+                try:
+                    value = float(input(f"Элемент [{i}][{j}]: "))
+                    break  # Если ввод корректен, выходим из цикла
+                except ValueError as e:
+                    print(f"Ошибка ввода: Введите числовое значение.")
+
             matrix.matrix[i][j] = value
 
     return matrix
+
 
 def main():
     while True:
@@ -124,7 +130,7 @@ def main():
                 print("\nРезультат вычисления обратной матрицы:")
                 result_inverse.display()
             except ValueError as e:
-                print(f"Ошибка: {e}")
+                print(f"Ошибка!")
 
 if __name__ == "__main__":
     main()

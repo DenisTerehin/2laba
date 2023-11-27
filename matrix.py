@@ -82,5 +82,4 @@ class MatrixOperations:
         result_matrix = Matrix(matrix.rows, matrix.cols)
         result_matrix.matrix = rounded_inverse_matrix.tolist()
 
-
         return result_matrix
