@@ -57,7 +57,3 @@ class TestIntegrationMatrixOperations(unittest.TestCase):
         print(result_transpose)
         result_determinant = MatrixOperations.determinant(result_transpose)
         self.assertEqual(result_determinant, 0)
-
-
-if __name__ == "__main__":
-    unittest.main()
