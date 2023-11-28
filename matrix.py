@@ -10,6 +10,10 @@ class Matrix:
         total_sum = sum(sum(row) for row in self.matrix)
         return total_sum
 
+    def display(self):
+        for row in self.matrix:
+            print(row)
+
     def _check_dimensions(self, other, operation):
         if operation == "сложение матриц" and (self.rows != other.rows or self.cols != other.cols):
             raise ValueError(f"Невозможно выполнить {operation}. Размеры матриц не совпадают.")
