@@ -58,6 +58,17 @@ class TestMatrixOperations(unittest.TestCase):
         # Check if the result matches the expected inverse matrix
         self.assertEqual(result_inverse.matrix, expected_result)
 
+    def test_determinant_non_square_matrix(self):
+        matrix = Matrix(2, 3)
+        with self.assertRaises(ValueError):
+            MatrixOperations.determinant(matrix)
+
+    def test_inverse_singular_matrix(self):
+        matrix = Matrix(2, 2)
+        matrix.matrix = [[1, 1], [1, 1]]
+        with self.assertRaises(ValueError):
+            MatrixOperations.inverse(matrix)
+
 # Интеграционные тесты
 class TestIntegrationMatrixOperations(unittest.TestCase):
     def test_multiply_matrices_and_scalar_multiply(self):
