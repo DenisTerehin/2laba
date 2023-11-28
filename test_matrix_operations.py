@@ -15,7 +15,7 @@ class TestMatrixOperations(unittest.TestCase):
         matrix2 = Matrix(2, 2)
         matrix2.matrix = [[5, 6], [7, 8]]
         result = MatrixOperations.add_matrices(matrix1, matrix2)
-        self.assertEqual(result.matrix, [[6, 4], [10, 12]])
+        self.assertEqual(result.matrix, [[6, 8], [10, 12]])
 
     def test_multiply_matrices(self):
         matrix1 = Matrix(2, 2)
