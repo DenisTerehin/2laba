@@ -30,7 +30,7 @@ class TestMatrixOperations(unittest.TestCase):
         matrix.matrix = [[1, 2], [3, 4]]
         scalar = 2
         result = MatrixOperations.scalar_multiply(matrix, scalar)
-        self.assertEqual(result.matrix, [[2, 2], [6, 8]])
+        self.assertEqual(result.matrix, [[2, 4], [6, 8]])
 
     def test_transpose(self):
         matrix = Matrix(2, 3)
