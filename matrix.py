@@ -11,7 +11,7 @@ class Matrix:
         return total_sum
 
     def display(self):
-        for row in self.matrix:
+        for row in self.matrix:   
             print(row)
 
     def _check_dimensions(self, other, operation):
