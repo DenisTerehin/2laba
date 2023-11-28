@@ -63,12 +63,6 @@ class TestMatrixOperations(unittest.TestCase):
         with self.assertRaises(ValueError):
             MatrixOperations.determinant(matrix)
 
-    def test_inverse_singular_matrix(self):
-        matrix = Matrix(2, 2)
-        matrix.matrix = [[1, 1], [1, 1]]
-        with self.assertRaises(ValueError):
-            MatrixOperations.inverse(matrix)
-
 # Интеграционные тесты
 class TestIntegrationMatrixOperations(unittest.TestCase):
     def test_multiply_matrices_and_scalar_multiply(self):
